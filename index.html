@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <link rel="stylesheet"  href="styles.css">
+
+    </head>
+    <body>
+        <div class="container">
+            <!-- <div class='first-part'> -->
+            <h1>Acme Grid Maker</h1>
+             <input class='row' placeholder="Row"><br>
+             <div class='rErr'></div>
+             <input class='column' placeholder="Column"><br>
+             <div class='cErr'></div>
+             <button>Make Grid</button>
+            <!-- </div> -->
+            <div class='second-part'>
+
+                </div>
+            <div class='third-part'>
+                <span>rIdx:</span>
+                <span class='row-num'></span>
+                <span>cIdx:</span>
+                <span class='col-num'></span>
+            </div>
+        
+        </div>
+
+    </body>
+    <script> 
+    const mainBox=document.querySelector('.second-part');
+    const button=document.querySelector('button');
+    const row=document.querySelector('.row');
+        const column=document.querySelector('.column');
+        const rowNum=document.querySelector('.row-num');
+        const colNum=document.querySelector('.col-num');
+        const rErr=document.querySelector('.rErr');
+        const cErr=document.querySelector('.cErr');
+    button.addEventListener('click',()=>{
+        
+        const rowValue=Number(row.value);
+        
+
+        const colValue=Number(column.value);
+        if(colValue<0 || colValue>50 || (typeof colValue !== "number")){
+            cErr.innerHTML='columns must be between 1 and 50';
+        }
+    else if(rowValue<0 || rowValue>50 || (typeof rowValue !== "number")){
+            rErr.innerHTML='rows must be between 1 and 50';
+
+        }
+        
+        else{
+        for(let i=0; i<rowValue; i++){
+           
+            for(let j=0; j<colValue; j++){
+                const box=document.createElement('span');
+                box.classList.add('box');
+                mainBox.appendChild(box);
+                box.addEventListener('click',(ev)=>{
+                    ev.target.classList.add('change');
+                    rowNum.innerHTML=i;
+                    colNum.innerHTML=j;
+              
+
+                })
+            }
+            const br=document.createElement('br');
+            mainBox.appendChild(br);
+        }
+        
+       
+        }
+       
+
+   
+    
+
+    })
+
+    </script>
+</html>
